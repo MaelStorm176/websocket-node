@@ -26,5 +26,20 @@ docker-compose exec node npm start
 ### Docker Compose Shutdown
 
 ```bash
-docker-compose up --detach
+docker-compose down
 ```
+
+## Libraries
+
+- [Express](https://expressjs.com/)
+- [Faker](https://fakerjs.dev/)
+- [Socket.io](https://socket.io/)
+- [Nodemon](https://nodemon.io/)
+
+## License
+
+MIT
+
+## Author
+
+[Mael JAMIN](https://github.com/MaelStorm176)

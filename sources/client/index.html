@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- SEO -->
+        <meta name="description" content="Différents type de communication en temps réel">
+        <meta name="keywords" content="temps réel, communication, sse, websocket">
+        <meta name="author" content="Maël Jamin">
+        <meta name="robots" content="noindex">
+        <meta name="googlebot" content="noindex">
+        <meta name="google" content="nositelinkssearchbox">
+        <meta name="google" content="notranslate">
+
+        <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+
+        <title>Communication Temps réel</title>
+        <style>
+            html, body {
+                height: 100%;
+                scroll-behavior: smooth;
+                font-family: 'Roboto', sans-serif;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 1rem;
+            }
+
+            @media (max-width: 600px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="container">
+            <h1>Communication Temps réel</h1>
+            <article>
+                <h2>Utilisateurs</h2>
+                <p>Liste de faux utilisateurs rafraichis par long polling ou SSE toutes les secondes.</p>
+                <hr/>
+                <div class="grid">
+                    <div>
+                        <h3>Long Polling</h3>
+                        <ul id="users"></ul>
+                    </div>
+                    <div>
+                        <h3>SSE</h3>
+                        <ul id="users_sse"></ul>
+                    </div>
+                    <div>
+                        <h3>Websocket</h3>
+                        <ul id="users_ws"></ul>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <h2>Messages</h2>
+                <p>Liste de faux messages envoyés par websocket.</p>
+                <hr/>
+                <div class="grid">
+                    <div>
+                        <h3>Websocket</h3>
+                        <div class="grid">
+                            <label for="number_one">
+                                <input maxlength="10" type="number" id="number_one" placeholder="Nombre 1" />
+                            </label>
+                            <label for="number_two">
+                                <input maxlength="10" type="number" id="number_two" placeholder="Nombre 2" />
+                            </label>
+                        </div>
+                        <button type="button" id="send">Additioner ces deux nombres</button>
+                    </div>
+                    <div>
+                        <h3>Résultat</h3>
+                        <ins id="results_ws"></ins>
+                    </div>
+                </div>
+            </article>
+        </main>
+        <script src="./index.js" type="module"></script>
+        <script src="./messages.js" type="module"></script>
+    </body>
+</html>

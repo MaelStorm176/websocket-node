@@ -1,0 +1,14 @@
+node_modules
+package-lock.json
+.npm
+.git
+.ash_history
+.bash_history
+.bashrc
+.cache
+.config
+.dbus
+.gconf
+.gnome2
+.gnome2_private
+.idea

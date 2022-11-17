@@ -59,8 +59,8 @@
                 </div>
             </article>
             <article>
-                <h2>Messages</h2>
-                <p>Liste de faux messages envoyés par websocket.</p>
+                <h2>Nombres</h2>
+                <p>Addition de deux nombres en websocket.</p>
                 <hr/>
                 <div class="grid">
                     <div>
@@ -81,8 +81,60 @@
                     </div>
                 </div>
             </article>
+            <article>
+                <h2>Chat</h2>
+                <p>Chat en temps réel avec websocket.</p>
+                <hr/>
+                <div class="grid">
+                    <div>
+                        <h3>Websocket</h3>
+                        <div class="grid">
+                            <label for="pseudo">
+                                <input maxlength="10" type="text" id="pseudo" placeholder="Pseudo" />
+                            </label>
+                            <label for="message">
+                                <input maxlength="100" type="text" id="message" placeholder="Message" />
+                            </label>
+                        </div>
+                        <button type="button" id="send_message">Envoyer</button>
+                    </div>
+                    <div>
+                        <h3>Messages</h3>
+                        <ul id="messages"></ul>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <h2>Chat avec channel</h2>
+                <p>Chat en temps réel avec websocket et channel.</p>
+                <hr/>
+                <div>
+                    <!-- List of users -->
+                    <h3>Utilisateurs</h3>
+                    <ul id="users_channel"></ul>
+                </div>
+                <div class="grid">
+                    <div>
+                        <h3>Websocket</h3>
+                        <div class="grid">
+                            <label for="pseudo_channel">
+                                <input maxlength="10" type="text" id="pseudo_channel" placeholder="Pseudo" />
+                            </label>
+                            <label for="message_channel">
+                                <input maxlength="100" type="text" id="message_channel" placeholder="Message" />
+                            </label>
+                        </div>
+                        <button type="button" id="send_message_channel">Envoyer</button>
+                    </div>
+                    <div>
+                        <h3>Messages</h3>
+                        <ul id="messages_channel"></ul>
+                    </div>
+            </article>
         </main>
-        <script src="./index.js" type="module"></script>
-        <script src="./messages.js" type="module"></script>
+        <script src="libs/socket.js" type="module"></script>
+        <script src="index.js" type="module"></script>
+        <script src="numbers.js" type="module"></script>
+        <script src="chat.js" type="module"></script>
     </body>
 </html>

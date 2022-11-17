@@ -1,7 +1,6 @@
-import { io } from "http://localhost:8000/socket.io/socket.io.esm.min.js"
-
+import socket from "./libs/socket.js";
 const send = document.getElementById("send");
-const socket = io("http://localhost:8000");
+
 socket.on("result", result => {
     const resultsElement = document.getElementById("results_ws")
     if (resultsElement) {

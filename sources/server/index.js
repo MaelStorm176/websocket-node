@@ -12,8 +12,15 @@ const generateUsers = () => Array.from(Array(10)).map(() => ({
 
 let users = []
 
-const server = express()
-const http = createServer(server)
+const server = express();
+const http = createServer(server);
+const io = new Server(http, {
+    cors: {
+        origin: "http://localhost:8000",
+        methods: ["GET", "POST"],
+        credentials: true,
+    }
+});
 
 server.use(express.static("sources/client")) // Serve the client files
 
@@ -43,14 +50,6 @@ http.listen(8000, "0.0.0.0", () => {
     console.log("Server listening")
 })
 
-const io = new Server(http, {
-    cors: {
-        origin: "http://localhost:8000",
-        methods: ["GET", "POST"],
-        credentials: true,
-    }
-});
-
 io.on("connection", socket => {
     console.log("Socket connected")
     setInterval(() => {
@@ -65,6 +64,13 @@ io.on("connection", socket => {
     socket.on("add", ({number_one, number_two}) => {
         const result = parseInt(number_one) + parseInt(number_two)
         socket.emit("result", result)
+    });
+
+    // Quand le serveur reçoit un message
+    socket.on("send_message", message => {
+        // On envoie le message à tous les clients connectés INCLUDING the sender
+        io.emit("message", message)
+        //socket.broadcast.emit("message", message)
     });
 });
 

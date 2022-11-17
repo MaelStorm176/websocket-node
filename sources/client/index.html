@@ -113,7 +113,7 @@
                     <h3>Utilisateurs</h3>
                     <ul id="users_channel"></ul>
                 </div>
-                <div class="grid">
+                <div class="grid" style="display: none" id="all_messages_channel">
                     <div>
                         <h3>Websocket</h3>
                         <div class="grid">
@@ -130,11 +130,13 @@
                         <h3>Messages</h3>
                         <ul id="messages_channel"></ul>
                     </div>
+                </div>
             </article>
         </main>
         <script src="libs/socket.js" type="module"></script>
         <script src="index.js" type="module"></script>
         <script src="numbers.js" type="module"></script>
         <script src="chat.js" type="module"></script>
+        <script src="chat_channel.js" type="module"></script>
     </body>
 </html>

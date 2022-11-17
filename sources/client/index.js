@@ -1,6 +1,35 @@
-import { io } from "http://localhost:8000/socket.io/socket.io.esm.min.js"
+import socket from "./libs/socket.js";
 
 const EACH_SECONDS = 1000
+
+/**
+ * Connects to the event source and listens for the "users" event
+ * @type {EventSource}
+ */
+const users_sse = new EventSource("/api/sse/users")
+users_sse.addEventListener("message", event => {
+    const users = JSON.parse(event.data)
+    const usersElement = document.getElementById("users_sse")
+    if (usersElement) {
+        usersElement.innerHTML = ""
+        appendUsersToAList(users, usersElement);
+    }else{
+        console.log("users_sse not found")
+    }
+})
+
+/**
+ * Connects to the socket.io server and listens for the "users" event
+ */
+socket.on("users", users => {
+    const usersElement = document.getElementById("users_ws")
+    if (usersElement) {
+        usersElement.innerHTML = ""
+        appendUsersToAList(users, usersElement);
+    }else{
+        console.log("users_socket not found")
+    }
+});
 
 /**
  * Simply fetches the users from the server and appends them to the list
@@ -22,36 +51,6 @@ const fetchAndDisplayUsers = async () => {
         console.error(error)
     }
 }
-
-/**
- * Connects to the event source and listens for the "users" event
- * @type {EventSource}
- */
-const users_sse = new EventSource("/api/sse/users")
-users_sse.addEventListener("message", event => {
-    const users = JSON.parse(event.data)
-    const usersElement = document.getElementById("users_sse")
-    if (usersElement) {
-        usersElement.innerHTML = ""
-        appendUsersToAList(users, usersElement);
-    }else{
-        console.log("users_sse not found")
-    }
-})
-
-/**
- * Connects to the socket.io server and listens for the "users" event
- */
-const socket = io("http://localhost:8000");
-socket.on("users", users => {
-    const usersElement = document.getElementById("users_ws")
-    if (usersElement) {
-        usersElement.innerHTML = ""
-        appendUsersToAList(users, usersElement);
-    }else{
-        console.log("users_socket not found")
-    }
-});
 
 /**
  * Appends the users to the list
